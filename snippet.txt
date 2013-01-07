@@ -29,10 +29,10 @@ if($JSfile!='' || (int)$JSdoc>0){
 if(isset($API)){
   $data=array('js'=>'','css'=>'');
   if($flagJS){
-  	$data['js'=>"/".$MinifyX->outFolder.$MinifyX->jsFile];
+  	$data['js']="/".$MinifyX->outFolder.$MinifyX->jsFile;
   }
   if($flagCSS){
-  	$data['css'=>"/".$MinifyX->outFolder.$MinifyX->cssFile];
+  	$data['css']="/".$MinifyX->outFolder.$MinifyX->cssFile;
   }	
 }else{
   $data='';
