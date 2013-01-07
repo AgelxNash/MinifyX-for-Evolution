@@ -5,7 +5,7 @@ class MinifyX{
 	public $outFolder='assets/cache/';
 	public $cssFile='style.css';
 	public $jsFile='script.js';
-	public $parse=true; //Парсить ли контент документов
+	public $parse=true; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   
 	private $dir,$modx;
 	
@@ -92,9 +92,10 @@ class MinifyX{
 		}
 		return $flag;
 	}
-	private function getPath($file){
-    $file=dirname($file);
+  private function getPath($file){
+	$file=dirname($file)."/";
     $file=str_replace($this->modx->config['base_path'],'/',$file)."/";
+	$file=str_replace('//','/',$file);
     return $file;
   }
 
