@@ -130,7 +130,7 @@ class MinifyX{
       $maxParserPasses= empty ($this->modx->maxParserPasses) ? 10 : $this->modx->maxParserPasses;
       $passes = $minParserPasses;
       
-      if($this->parse){
+      if($this->modx->parse){
         for ($i= 0; $i < $passes; $i++) {
           if ($i == ($passes -1)) $st = strlen($content);
         	
