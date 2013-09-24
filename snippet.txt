@@ -1,5 +1,4 @@
 <?php
-//<?php
 /**
  * MinifyX for MODX Evolution 
  * created by Agel_Nash
@@ -16,6 +15,9 @@ $JSdoc=isset($JSdoc) ? (int)$JSdoc : 0;
 
 
 $MinifyX=new MinifyX($modx);
+if(!empty($outFolder)){
+	$MinifyX->outFolder = $outFolder;
+}
 if($CSSfile!='' || (int)$CSSdoc>0){
   $flagCSS=$MinifyX->minCSS($CSSfile,$CSSdoc);
   $modx->logEvent(46,1,"CSSFILE: ".$CSSfile."<br />CSSDOC: ".$CSSdoc,"MinifyX new CSS");
@@ -46,4 +48,3 @@ if(isset($API)){
 }
 
 return $data;
-?>
