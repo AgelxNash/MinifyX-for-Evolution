@@ -106,16 +106,16 @@ class MinifyX{
 			$f = trim($f);
 			$fp = $this->modx->config['base_path'].$f;
 			if (is_readable($fp)){
-				$out .= "\r\n\r\n/* " . $f . " */ \r\n";
+				$out .= "/* " . $f . " */\r\n";
 				$content = file_get_contents($fp);  
         switch($type){
 			case 'css':{
 				//@see: http://stackoverflow.com/questions/9798378/preg-replace-regex-to-match-relative-url-paths-in-css-files
 				$content=preg_replace('#url\((?!\s*[\'"]?(?:https?:)?/)\s*([\'"])?#i', "url($1{$this->getPath($fp)}", $content);
-				$out .= Minify_CSS_Compressor::process($content);
+				$out .= trim(Minify_CSS_Compressor::process($content));
 				break;
 			  }case 'js':{
-				$out .= JSMin::minify($content);
+				$out .= trim(JSMin::minify($content));
 				break;
 			  }
         }
@@ -123,7 +123,7 @@ class MinifyX{
 		}
     if((int)$id>0){
     	$sql=$this->modx->db->query("SELECT content FROM ".$this->modx->getFullTableName("site_content")." WHERE id=".(int)$id);
-      $out .= "\r\n\r\n/* DB */ \r\n";
+      $out .= "/* DB */\r\n";
 			$content = $this->modx->db->getValue($sql);
       
       $minParserPasses= empty ($this->modx->minParserPasses) ? 2 : $this->modx->minParserPasses;
@@ -146,7 +146,7 @@ class MinifyX{
        	 }
         }
       }
-      $out .= $content;
+      $out .= trim($content);
     }
 		return $out;
 	}
