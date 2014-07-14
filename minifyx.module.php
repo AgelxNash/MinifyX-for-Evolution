@@ -1,4 +1,4 @@
-//<?php
+<?php
 /**
  * MinifyX for MODX Evolution 
  * created by Agel_Nash
@@ -7,7 +7,7 @@
  * @version   v 1.0
  * @internal  @legacy_names MinifyX
  * @internal  @installset base, sample
- * @internal  @properties  &CSSfile=CSS ôàéëû;textarea; &JSfile=JS ôàéëû;textarea; &CSSdoc=ID CSS äîêóìåíòà;int; &JSdoc=ID JS äîêóìåíòà;int;
+ * @internal  @properties  &CSSfile=CSS Ñ„Ð°Ð¹Ð»Ñ‹;textarea; &JSfile=JS Ñ„Ð°Ð¹Ð»Ñ‹;textarea; &CSSdoc=ID CSS Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ð°;int; &JSdoc=ID JS Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ð°;int;
  */
 
 

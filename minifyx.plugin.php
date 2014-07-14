@@ -1,4 +1,4 @@
-//<?php
+<?php
 /**
  * MinifyX for MODX Evolution 
  * created by Agel_Nash

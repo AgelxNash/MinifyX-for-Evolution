@@ -2,10 +2,10 @@
 if(!defined('MODX_BASE_PATH')) {die('What are you doing? Get out of here!');}
 
 class MinifyX{
-	public $outFolder='assets/cache/';
+	public $outFolder='assets/templates/';
 	public $cssFile='style.css';
 	public $jsFile='script.js';
-	public $parse=true; //������� �� ������� ����������
+	public $parse=true;
   
 	private $dir,$modx;
 	
