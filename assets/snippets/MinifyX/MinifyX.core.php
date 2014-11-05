@@ -93,10 +93,10 @@ class MinifyX{
 		return $flag;
 	}
   private function getPath($file){
-	$file=dirname($file)."/";
-    $file=str_replace($this->modx->config['base_path'],'/',$file)."/";
-	$file=str_replace('//','/',$file);
-    return $file;
+	$OutFile=dirname($file)."/";
+    $OutFile=str_replace($this->modx->config['base_path'],'/',$OutFile)."/";
+	$OutFile=str_replace('//','/',$OutFile);
+    return $OutFile;
   }
 
 	private function collectContents($data,$id,$type){
@@ -111,11 +111,11 @@ class MinifyX{
         switch($type){
 			case 'css':{
 				//@see: http://stackoverflow.com/questions/9798378/preg-replace-regex-to-match-relative-url-paths-in-css-files
-				$content=preg_replace('#url\((?!\s*[\'"]?(?:https?:)?/)\s*([\'"])?#i', "url($1{$this->getPath($fp)}", $content);
+				$content=preg_replace('#url\((?!\s*[\'"]?(data\:image|/|http([s]*)\:\/\/))\s*([\'"])?#i', "url($1{$this->getPath($fp)}", $content);
 				$out .= trim(Minify_CSS_Compressor::process($content));
 				break;
 			  }case 'js':{
-				$out .= trim(JSMin::minify($content));
+				$out .= trim(trim(JSMin::minify($content)), ';').';';
 				break;
 			  }
         }
