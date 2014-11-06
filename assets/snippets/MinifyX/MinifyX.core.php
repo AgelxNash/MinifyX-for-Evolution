@@ -111,7 +111,7 @@ class MinifyX{
         switch($type){
 			case 'css':{
 				//@see: http://stackoverflow.com/questions/9798378/preg-replace-regex-to-match-relative-url-paths-in-css-files
-				$content=preg_replace('#url\((?!\s*[\'"]?(data\:image|/|http([s]*)\:\/\/))\s*([\'"])?#i', "url($1{$this->getPath($fp)}", $content);
+				$content=preg_replace('#url\((?!\s*[\'"]?(data\:image|/|http([s]*)\:\/\/))\s*([\'"])?#i', "url($3{$this->getPath($fp)}", $content);
 				$out .= trim(Minify_CSS_Compressor::process($content));
 				break;
 			  }case 'js':{
