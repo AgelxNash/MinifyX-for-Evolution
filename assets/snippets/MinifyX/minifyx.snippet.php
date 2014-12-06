@@ -1,6 +1,6 @@
 <?php
 /**
- * MinifyX for MODX Evolution 
+ * MinifyX for MODX Evolution
  * created by Agel_Nash
  *
  * @category  snippet
@@ -41,12 +41,12 @@ if(isset($API)){
   }
   if($flagCSS){
   	$data['css']="/".$MinifyX->outFolder.$MinifyX->cssFile;
-  }	
+  }
 }else{
   $data='';
   $modx->logEvent(46,2,"slow MODE","MinifyX");
 	if($flagJS){
-  	$modx->regClientCSS("/".$MinifyX->outFolder.$MinifyX->jsFile);
+  	$modx->regClientScript("/".$MinifyX->outFolder.$MinifyX->jsFile);
   }
   if($flagCSS){
   	$modx->regClientCSS("/".$MinifyX->outFolder.$MinifyX->cssFile);
