@@ -34,6 +34,9 @@ class MinifyX{
 			if( ($data = $this->collectContents($css, $doc, 'css', $compress)) != ''){
 				if($this->writeFile($this->cssFile, $data)){
 					$flag = $this->outFolder . $this->cssFile;
+
+					$jgz = pathinfo($flag, PATHINFO_BASENAME).".jgz";
+					$this->writeFile($jgz, gzencode($data));
 				}
 			}
 		}
@@ -50,7 +53,10 @@ class MinifyX{
 			if( ($data = $this->collectContents($js, $doc, 'js', $compress)) != ''){
 				if($this->writeFile($this->jsFile, $data)){
 					$flag = $this->outFolder . $this->jsFile;
+					$jgz = pathinfo($flag, PATHINFO_BASENAME).".jgz";
+					$this->writeFile($jgz, gzencode($data));
 				}
+
 			}
 		}
 		return $flag;

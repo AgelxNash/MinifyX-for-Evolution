@@ -46,11 +46,51 @@ Component MinifyX for MODX Evolution
 **ВАЖНО!!!** Если в этих документах используются MODX теги и значение этих тегов зависит от других документов, то необходима донастройка плагина и изменение контролирующего события, чтобы файлы пересоздавались при каждой отчистке кеша MODX. Но делать этого я не рекомендую. Лучше просто исключите этот документ из настроек MinifyX и подключайте его в шаблоне как src="[~id~]"
 - Возможность ручного пересоздания сжатых файлов при помощи запуска модуля
 
-TODO
+Использование GZIP сжатия
 --------
-- В имя файла добавлять хеш для принудительной загрузки измененого файла
-- Если файл существует и хеш имени совпадает с текущим хешем документов, то сразу делать return данных, а не сжимать повторно
-- Вынесение всех опций в параметры сниппета и на вкладку конфигурация в модуль
-- Больше валидаций в MinifyX.core.php
-- Поддержка сразу нескольких документов одного типа из дерева документов
-- Инсталлятор, т.к. очень много кнопочек нужно кликнуть для полной настройки
+Добавить в .htaccess следующие строки:
+```
+AddEncoding gzip .jgz
+
+#add support gzip JavaScript
+RewriteCond %{HTTP_USER_AGENT} ".*Safari.*" [OR]
+RewriteCond %{HTTP:Accept-Encoding} gzip
+RewriteCond %{REQUEST_FILENAME}.jgz -f
+RewriteRule (.*)\.js$ $1\.js.jgz [L]
+AddType "text/javascript" .js.jgz
+
+#add support gzip CSS
+RewriteCond %{HTTP_USER_AGENT} ".*Safari.*" [OR]
+RewriteCond %{HTTP:Accept-Encoding} gzip
+RewriteCond %{REQUEST_FILENAME}.jgz -f
+RewriteRule (.*)\.js$ $1\.css.jgz [L]
+AddType "text/css" .css.jgz
+AddEncoding gzip .jgz
+```
+
+Пример использования
+---------
+```
+[!MinifyX?
+	&CSSfile=`
+		assets/js/templates/v1/css/reset.css,
+		assets/js/templates/v1/css/grid.css,
+		assets/js/templates/v1/css/style.css,
+		assets/js/templates/v1/js/custom.css
+	`
+	&JSfile=`
+		assets/js/jquery.js,
+		assets/js/templates/v1/js/custom.js
+	`
+	&cssCompress=`1`
+	&jsCompress=`1`
+	&outFolder=`assets/templates/`
+	&outCSS=`v1.css`
+	&outJS=`v1.js`
+!]
+
+<link rel="stylesheet" type="text/css" href="/assets/templates/v1.css.jgz" />
+<!-- либо <link rel="stylesheet" type="text/css" href="/assets/templates/v1.css" /> !-->
+<script type="text/javascript" src="/assets/templates/v1.js.jgz"></script>
+<!-- либо <script type="text/javascript" src="/assets/templates/v1.js"></script> !-->
+```
