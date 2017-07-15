@@ -18,10 +18,12 @@ class MinifyX{
 	public function checkHashFile(&$files, $type){
 		$hash = array();
 		$files = $this->collectFile($files, $type);
-		foreach($files as $f){
-			$hash[] = sha1_file(MODX_BASE_PATH . $f);
+		if(is_array($files)){
+			foreach($files as $f){
+				$hash[] = sha1_file(MODX_BASE_PATH . $f);
+			}
+			$files = implode(",", $files);
 		}
-		$files = implode(",", $files);
 		return $hash;
 	}
 
