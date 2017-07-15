@@ -104,7 +104,7 @@ if(!empty($param['JSfile']) || !empty($param['JSdoc'])){
 
 //На всякий случай регистрируем плейсхолдер с адресами к файлам
 if($useCSS){
-  $css = empty($data['css']) ? $params['outFolder'].$params['outCSS'] : $data['css'];
+  $css = empty($data['css']) ? $param['outFolder'].$param['outCSS'] : $data['css'];
   $modx->setPlaceholder('css.'.$param['hashName'], $css);
   if(empty($param['API']) && !empty($param['inject'])){
     $modx->regClientCSS($modx->getConfig('site_url').$css);
@@ -112,7 +112,7 @@ if($useCSS){
 }
 
 if($useJS){
-  $js = empty($data['js']) ? $params['outFolder'].$params['outJS'] : $data['js'];
+  $js = empty($data['js']) ? $param['outFolder'].$param['outJS'] : $data['js'];
   $modx->setPlaceholder('js.'.$param['hashName'], $js);
   if(empty($param['API']) && !empty($param['inject'])){
     $modx->regClientStartupScript($modx->getConfig('site_url').$js);
